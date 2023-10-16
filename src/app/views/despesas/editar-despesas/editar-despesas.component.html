@@ -1,0 +1,107 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-10 col-lg-6 mx-auto mt-5">
+      <div class="text-md-start">
+        <h1 class="fw-bold text-primary">Inserir Nova despesa</h1>
+      </div>
+
+      <form [formGroup]="form" class="mt-4" (ngSubmit)="gravar()">
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Nome:</label>
+          <input
+            [ngClass]="campoEstaInvalido('descricao') ? 'is-invalid' : ''"
+            formControlName="descricao"
+            class="form-control"
+            type="text"
+            placeholder="Digite o nome do contato"
+          />
+        </div>
+
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Data:</label>
+
+          <input
+            class="form-control"
+            type="date"
+            formControlName="data"
+            [ngClass]="campoEstaInvalido('data') ? 'is-invalid' : ''"
+          />
+        </div>
+
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Forma de pagamento:</label>
+
+          <div class="d-flex align-items-center gap-2">
+            <input
+              name="formaPagamento"
+              type="radio"
+              [value]="0"
+              formControlName="formaPagamento"
+              [ngClass]="
+                campoEstaInvalido('formaPagamento') ? 'is-invalid' : ''
+              "
+            />
+            PIX
+
+            <input
+              name="formaPagamento"
+              type="radio"
+              [value]="1"
+              formControlName="formaPagamento"
+              [ngClass]="
+                campoEstaInvalido('formaPagamento') ? 'is-invalid' : ''
+              "
+            />
+            À Vista
+            <input
+              name="formaPagamento"
+              type="radio"
+              [value]="2"
+              formControlName="formaPagamento"
+              [ngClass]="
+                campoEstaInvalido('formaPagamento') ? 'is-invalid' : ''
+              "
+            />
+            Cartão de crédito
+          </div>
+        </div>
+
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Valor:</label>
+          <input
+            [ngClass]="campoEstaInvalido('valor') ? 'is-invalid' : ''"
+            formControlName="valor"
+            class="form-control"
+            type="number"
+            placeholder="Digite o valor da despesa"
+          />
+        </div>
+
+        <div class="form-group mb-3 position-relative">
+          <ng-select [multiple]="true" formControlName="categoriasSelecionadas">
+            <ng-option
+              *ngFor="let categoria of categorias"
+              [value]="categoria.id"
+              >{{ categoria.titulo }}</ng-option
+            >
+          </ng-select>
+        </div>
+
+        <div class="card-footer g-grid d-flex gap-1 mt-5">
+          <button type="submit" class="btn btn-primary px-5">
+            <i class="bi bi-save me-2"></i>
+            Gravar
+          </button>
+          <button
+            routerLink="/contatos/listar"
+            type="button"
+            class="btn btn-outline-primary px-5"
+          >
+            <i class="pi pi-arrow-left me-2"></i>
+            Voltar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

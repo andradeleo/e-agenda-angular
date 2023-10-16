@@ -1,0 +1,41 @@
+<div class="container my-2">
+  <div class="row">
+    <!-- Conteúdo principal -->
+    <div class="col-12 col-md-10 col-lg-9 mx-auto mt-5">
+      <!-- Titulo -->
+      <div class="text-md-start">
+        <h1 class="fw-bold text-primary">Listar Contatos</h1>
+        <hr />
+      </div>
+
+      <!-- Barra de Ações -->
+      <div class="d-grid d-md-flex gap-1 mt-5 mb-4">
+        <a
+          [routerLink]="['/contatos/inserir']"
+          role="button"
+          class="btn btn-primary me-md-1"
+        >
+          <i class="pi pi-plus-circle me-2"></i>
+          Novo Contato
+        </a>
+      </div>
+
+      <app-filtro-contatos-favoritos
+        (onFiltroSelecionado)="filtrarContatos($event)"
+      >
+      </app-filtro-contatos-favoritos>
+
+      <!-- Listagem de Registros -->
+      <div class="mt-2 row g-2">
+        <div *ngFor="let contato of contatos" class="col-12 col-md-6 col-lg-4">
+          <app-card-contato [contato]="contato"></app-card-contato>
+        </div>
+        <div *ngIf="contatos.length == 0">
+          <app-mensagem-sem-registro
+            mensagem="tarefas"
+          ></app-mensagem-sem-registro>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

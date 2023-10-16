@@ -1,0 +1,45 @@
+<div class="card h-100 border-dark">
+  <div class="card-body d-flex flex-column gap-1">
+    <div class="d-flex flex-column">
+      <h5 class="card-title mb-1 text-primary">
+        {{ compromissos.assunto }}
+      </h5>
+      <span class="card-text text-muted">{{
+        compromissos.tipoLocal == 0 ? "Remoto" : "Presencial"
+      }}</span>
+    </div>
+    <span class="card-text text-muted fw-semibold">{{
+      compromissos.local || compromissos.link
+    }}</span>
+    <span class="card-text fw-semibold">Data: {{ compromissos.data }}</span>
+    <div class="d-flex gap-3 card-text text-muted">
+      <span class="card-text fw-semibold"
+        >Inicio: {{ formatarHorario(compromissos.horaInicio) }}</span
+      >
+      <span class="card-text fw-semibold"
+        >Término: {{ formatarHorario(compromissos.horaTermino) }}</span
+      >
+    </div>
+  </div>
+
+  <div class="d-flex gap-1 justify-content-end card-footer bg-transparent">
+    <button
+      class="btn btn-outline-dark rounded-5 py-2"
+      routerLink="/compromissos/editar/{{ compromissos.id }}"
+      aria-label="Editar"
+      ngbTooltip="Editar"
+      placement="bottom"
+    >
+      <i class="bi bi-pen"></i>
+    </button>
+    <button
+      class="btn btn-outline-dark rounded-5 py-2"
+      routerLink="/compromissos/excluir/{{ compromissos.id }}"
+      aria-label="Excluir"
+      ngbTooltip="Excluir"
+      placement="bottom"
+    >
+      <i class="bi bi-trash"></i>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row">
+    <!-- Conteúdo principal -->
+    <div class="col-12 col-md-10 col-lg-9 mx-auto my-5">
+      <!-- Titulo -->
+      <div class="text-md-start">
+        <div class="text-md-start">
+          <h1 class="fw-bold text-primary">Visualizar Contato</h1>
+          <hr />
+        </div>
+      </div>
+
+      <dl class="form-group mt-4 row">
+        <dt class="col-md-4">
+          <label class="control-label">Nome: {{ contatoVM.nome }}</label>
+        </dt>
+        <dd class="col-md-8"></dd>
+
+        <dt class="col-md-4">
+          <label class="control-label">Email: {{ contatoVM.email }}</label>
+        </dt>
+        <dd class="col-md-8"></dd>
+
+        <dt class="col-md-4">
+          <label class="control-label"
+            >Telefone: {{ contatoVM.telefone }}</label
+          >
+        </dt>
+        <dd class="col-md-8"></dd>
+
+        <dt class="col-md-4">
+          <label class="control-label">Cargo: {{ contatoVM.cargo }}</label>
+        </dt>
+        <dd class="col-md-8"></dd>
+
+        <dt class="col-md-4">
+          <label class="control-label">Empresa: {{ contatoVM.empresa }}</label>
+        </dt>
+        <dd class="col-md-8"></dd>
+      </dl>
+
+      <div>
+        <h4 class="fw-bold text-primary">
+          Compromissos do '{{ contatoVM.nome }}'
+        </h4>
+        <div>
+          <app-card-visualizao-completa
+            *ngFor="let compromisso of contatoVM.compromissos"
+            [compromisso]="compromisso"
+          ></app-card-visualizao-completa>
+          <span *ngIf="contatoVM.compromissos.length == 0"
+            >Nenhum compromisso cadastrado!</span
+          >
+        </div>
+
+        <div class="card-footer g-grid d-flex gap-1 mt-3">
+          <button
+            routerLink="/contatos/listar"
+            type="button"
+            class="btn btn-outline-primary px-5"
+          >
+            <i class="bi bi-arrow-return-left me-2"></i>
+            Voltar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

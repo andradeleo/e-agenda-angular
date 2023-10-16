@@ -1,0 +1,21 @@
+<div class="row g-2">
+  <div class="col-6 col-lg-1">
+    <button
+      (click)="selecionarTodos()"
+      class="btn btn-sm px-2 fs-6 fw-semibold"
+      [ngClass]="number == 0 ? 'btn-primary' : 'btn-outline-primary'"
+    >
+      Todos
+    </button>
+  </div>
+
+  <div class="col-6 col-lg-1 mx-3">
+    <button
+      (click)="selecionarFavoritos()"
+      class="btn btn-sm px-2 fs-6 fw-semibold"
+      [ngClass]="number == 1 ? 'btn-primary' : 'btn-outline-primary'"
+    >
+      Favoritos
+    </button>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<div class="card h-100 border-dark">
+  <div class="card-body d-flex flex-column gap-1">
+    <div class="d-flex flex-column">
+      <h5 class="card-title mb-1 text-primary">
+        {{ contato.nome }}
+      </h5>
+      <span class="card-text text-muted">{{ contato.telefone }}</span>
+    </div>
+    <span class="card-text text-muted fw-semibold"
+      >Cargo: {{ contato.cargo }}</span
+    >
+    <span class="card-text fw-semibold">Empresa: {{ contato.empresa }}</span>
+  </div>
+
+  <div class="d-flex justify-content-between card-footer bg-transparent">
+    <button
+      class="btn btn-outline-dark rounded-5 py-2"
+      routerLink="/contatos/visualizar-contato/{{ contato.id }}"
+      aria-label="Visualizar contato"
+      ngbTooltip="Visualizar contato"
+      placement="bottom"
+    >
+      <i class="bi bi-eye"></i>
+    </button>
+    <div class="d-flex gap-1">
+      <button
+        (click)="favoritarContato(contato)"
+        class="btn rounded-5 py-2"
+        [ngClass]="contato.favorito ? 'btn-danger' : ' btn-outline-danger'"
+        aria-label="Favoritar"
+        ngbTooltip="Favoritar"
+        placement="bottom"
+      >
+        <i
+          [ngClass]="contato.favorito ? 'bi bi-heart-fill' : 'bi bi-heart'"
+        ></i>
+      </button>
+      <button
+        class="btn btn-outline-dark rounded-5 py-2"
+        routerLink="/contatos/editar/{{ contato.id }}"
+        aria-label="Editar"
+        ngbTooltip="Editar"
+        placement="bottom"
+      >
+        <i class="bi bi-pen"></i>
+      </button>
+      <button
+        class="btn btn-outline-dark rounded-5 py-2"
+        routerLink="/contatos/excluir/{{ contato.id }}"
+        aria-label="Excluir"
+        ngbTooltip="Excluir"
+        placement="bottom"
+      >
+        <i class="bi bi-trash"></i>
+      </button>
+    </div>
+  </div>
+</div>

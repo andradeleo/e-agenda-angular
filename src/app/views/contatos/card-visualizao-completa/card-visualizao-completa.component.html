@@ -1,0 +1,20 @@
+<div class="my-2">
+  <div class="card">
+    <div class="card-header">
+      <span class="fw-bold">Assunto:</span> {{ compromisso.assunto }}
+    </div>
+    <div>
+      <div class="card-body text-muted d-flex justify-content-between">
+        <span>{{ compromisso.tipoLocal == 0 ? "Remoto" : "Presencial" }}</span>
+        <span>{{ "www.acadprogramador.com" }}</span>
+      </div>
+      <div class="card-footer fs-6">
+        <span>Data: {{ compromisso.data }}</span>
+        <div class="d-flex gap-4 align-items-center">
+          <span>Inicío: {{ formatarHorario(compromisso.horaInicio) }}</span>
+          <span>Termino: {{ formatarHorario(compromisso.horaTermino) }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <!-- Conteúdo principal -->
+    <div class="col-12 col-md-10 col-lg-9 mx-auto mt-5">
+      <!-- Titulo -->
+      <div class="text-md-start">
+        <h1 class="fw-bold text-primary">Listar Tarefas</h1>
+        <hr />
+      </div>
+
+      <!-- Barra de Ações -->
+      <div class="d-grid d-md-flex gap-1 mt-5 mb-4">
+        <a
+          [routerLink]="['/tarefas/inserir']"
+          role="button"
+          class="btn btn-primary me-md-1"
+        >
+          <i class="pi pi-plus-circle me-2"></i>
+          Novo Tarefa
+        </a>
+      </div>
+      <!-- Listagem de Registros -->
+      <div class="mt-2 row g-2">
+        <div *ngFor="let tarefa of tarefas" class="col-12 col-md-6 col-lg-4">
+          <app-card-tarefa [tarefa]="tarefa"></app-card-tarefa>
+        </div>
+        <div *ngIf="tarefas.length == 0">
+          <app-mensagem-sem-registro
+            mensagem="tarefas"
+          ></app-mensagem-sem-registro>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

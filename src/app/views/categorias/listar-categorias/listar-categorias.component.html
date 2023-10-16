@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <!-- Conteúdo principal -->
+    <div class="col-12 col-md-10 col-lg-9 mx-auto mt-5">
+      <!-- Titulo -->
+      <div class="text-md-start">
+        <h1 class="fw-bold text-primary">Listar categorias</h1>
+        <hr />
+      </div>
+
+      <!-- Barra de Ações -->
+      <div class="d-grid d-md-flex gap-1 mt-5 mb-4">
+        <a
+          [routerLink]="['/categorias/inserir']"
+          role="button"
+          class="btn btn-primary me-md-1"
+        >
+          <i class="pi pi-plus-circle me-2"></i>
+          Nova Categoria
+        </a>
+      </div>
+
+      <!-- Listagem de Registros -->
+      <div class="mt-2 row g-2">
+        <div
+          *ngFor="let categoria of categorias"
+          class="col-12 col-md-6 col-lg-4"
+        >
+          <app-card-categoria [categoria]="categoria"></app-card-categoria>
+        </div>
+        <div *ngIf="categorias.length == 0">
+          <app-mensagem-sem-registro
+            mensagem="tarefas"
+          ></app-mensagem-sem-registro>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

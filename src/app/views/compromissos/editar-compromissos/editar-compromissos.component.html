@@ -1,0 +1,162 @@
+<div class="container mb-4">
+  <div class="row">
+    <div class="col-12 col-md-10 col-lg-6 mx-auto mt-5">
+      <div class="text-md-start">
+        <h1 class="fw-bold text-primary">Editar compromisso</h1>
+      </div>
+
+      <form [formGroup]="form" class="mt-4">
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Assunto:</label>
+          <input
+            formControlName="assunto"
+            [ngClass]="campoEstaInvalido('assunto') ? 'is-invalid' : ''"
+            class="form-control"
+            type="text"
+            placeholder="Digite o assunto do compromisso"
+          />
+          <div class="invalid-tooltip" *ngIf="campoEstaInvalido('assunto')">
+            <span>O assunto precisa ser preenchido</span>
+          </div>
+        </div>
+
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Tipo de Compromisso:</label>
+
+          <div class="d-flex align-items-center gap-2">
+            <input
+              name="tipoLocal"
+              type="radio"
+              [value]="0"
+              formControlName="tipoLocal"
+              [ngClass]="campoEstaInvalido('tipoLocal') ? 'is-invalid' : ''"
+            />
+            Remoto
+
+            <input
+              name="tipoLocal"
+              type="radio"
+              [value]="1"
+              formControlName="tipoLocal"
+              [ngClass]="campoEstaInvalido('tipoLocal') ? 'is-invalid' : ''"
+            />
+            Presencial
+          </div>
+        </div>
+
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Link:</label>
+          <input
+            formControlName="link"
+            [ngClass]="campoEstaInvalido('link') ? 'is-invalid' : ''"
+            class="form-control"
+            type="text"
+            placeholder="Digite o link do compromisso"
+          />
+          <div class="invalid-tooltip" *ngIf="campoEstaInvalido('link')">
+            <span>O link precisa ser preenchido</span>
+          </div>
+        </div>
+
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Local:</label>
+          <input
+            formControlName="local"
+            [ngClass]="campoEstaInvalido('local') ? 'is-invalid' : ''"
+            class="form-control"
+            type="text"
+            placeholder="Digite o local do compromisso"
+          />
+          <div class="invalid-tooltip" *ngIf="campoEstaInvalido('local')">
+            <span>O local precisa ser preenchido</span>
+          </div>
+        </div>
+
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Data:</label>
+
+          <input
+            class="form-control"
+            type="date"
+            formControlName="data"
+            [ngClass]="campoEstaInvalido('data') ? 'is-invalid' : ''"
+          />
+          <div class="invalid-tooltip" *ngIf="campoEstaInvalido('data')">
+            <span>A data precisa ser preenchido</span>
+          </div>
+        </div>
+
+        <div class="form-group mb-3 position-relative row">
+          <div class="col-6">
+            <label class="form-label">Hora de Início:</label>
+            <input
+              [ngClass]="campoEstaInvalido('horaInicio') ? 'is-invalid' : ''"
+              formControlName="horaInicio"
+              class="form-control"
+              type="time"
+              placeholder="Digite o telefone do contato"
+            />
+            <div
+              class="invalid-tooltip"
+              *ngIf="campoEstaInvalido('horaInicio')"
+            >
+              <span>A hora inicio precisa ser preenchido</span>
+            </div>
+          </div>
+
+          <div class="col">
+            <label class="form-label">Hora de Término:</label>
+            <input
+              formControlName="horaTermino"
+              [ngClass]="campoEstaInvalido('horaTermino') ? 'is-invalid' : ''"
+              class="form-control"
+              type="time"
+              placeholder="Digite o telefone do contato"
+            />
+            <div
+              class="invalid-tooltip"
+              *ngIf="campoEstaInvalido('horaTermino')"
+            >
+              <span>A hora termino precisa ser preenchido</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Contato:</label>
+          <select
+            class="form-select w-50"
+            name="contatoId"
+            id=""
+            formControlName="contatoId"
+            [ngClass]="campoEstaInvalido('contatoId') ? 'is-invalid' : ''"
+          >
+            <option *ngFor="let contato of contatos" [ngValue]="contato.id">
+              {{ contato.nome }}
+            </option>
+          </select>
+        </div>
+
+        <div class="card-footer g-grid d-flex gap-1 mt-5">
+          <button
+            (click)="gravar()"
+            data-cy="btnGravar"
+            type="button"
+            class="btn btn-primary px-5"
+          >
+            <i class="bi bi-save me-2"></i>
+            Gravar
+          </button>
+          <button
+            routerLink="/compromissos/listar"
+            type="button"
+            class="btn btn-outline-primary px-5"
+          >
+            <i class="pi pi-arrow-left me-2"></i>
+            Voltar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

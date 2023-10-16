@@ -1,0 +1,36 @@
+<div class="mt-3">
+  <table class="table table-light table-striped table-hover table-borderless">
+    <thead class="thead-dark text-center">
+      <tr>
+        <th>Titulo</th>
+        <th>Concluído</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody class="text-center">
+      <tr *ngFor="let item of itens">
+        <td>{{ item.titulo }}</td>
+        <td>{{ item.concluido }}</td>
+
+        <td class="d-grid d-md-block">
+          <button
+            (click)="marcarComoConcluido(item)"
+            data-cy="btnEditar"
+            type="button"
+            class="btn btn-sm btn-primary me-0 me-md-1 mb-1 mb-md-auto"
+          >
+            <i class="bi bi-check"></i>
+          </button>
+          <button
+            (click)="excluirItem(item)"
+            data-cy="btnExcluir"
+            type="button"
+            class="btn btn-sm btn-outline-danger me-0 me-md-1 mb-1 mb-md-auto"
+          >
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
