@@ -10,12 +10,16 @@ import { FormsContatoViewModel } from "../models/forms-contato.view-model";
 import { ListarContatoViewModel } from "../models/listar-contato.view-model";
 import { VisualizarContatoViewModel } from "../models/visualizar-contato.view-model";
 import { VisualizarContatoCompletoViewModel } from "../models/visualizar-contato-completo.view-model";
+import { LocalStorageService } from "src/app/core/auth/services/local-storage.service";
 
 @Injectable()
 export class ContatosService {
   private endpoint: string = `${environment.URL}/api/contatos`;
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly localStorageService: LocalStorageService
+  ) {}
 
   public inserir(
     contato: FormsContatoViewModel
@@ -99,7 +103,7 @@ export class ContatosService {
   }
 
   private obterHeadersAutorizacao() {
-    const token = environment.apiKey;
+    const token = this.localStorageService.obterDadosLocaisSalvos()?.chave;
 
     return {
       headers: new HttpHeaders({

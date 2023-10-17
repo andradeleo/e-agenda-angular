@@ -1,5 +1,9 @@
+import { HttpErrorResponse } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ToastrService } from "ngx-toastr";
+import { TokenViewModel } from "src/app/core/auth/models/token.view-model";
+import { AuthService } from "src/app/core/auth/services/auth.service";
 
 @Component({
   selector: "app-registro",
@@ -9,7 +13,11 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 export class RegistroComponent implements OnInit {
   form!: FormGroup;
 
-  constructor(private readonly formBuilder: FormBuilder) {}
+  constructor(
+    private readonly formBuilder: FormBuilder,
+    private readonly authService: AuthService,
+    private readonly toastService: ToastrService
+  ) {}
 
   campoEstaInvalido(tipo: string) {
     return this.form.get(tipo)!.touched && this.form.get(tipo)!.invalid;
@@ -25,6 +33,20 @@ export class RegistroComponent implements OnInit {
   }
 
   gravar() {
-    console.log(this.form.value);
+    this.authService.registrar(this.form.value).subscribe({
+      next: (res: TokenViewModel) => this.processarSucesso(res),
+      error: (err: HttpErrorResponse) => this.processarFalha(err),
+    });
+  }
+
+  processarSucesso(res: TokenViewModel) {
+    this.toastService.success(`Conta cadastrada com sucesso!"`, "Sucesso");
+  }
+
+  processarFalha(err: HttpErrorResponse) {
+    this.toastService.error(
+      `Houve uma falha ao tentar cadastrar o usuário ${err}`,
+      "Error"
+    );
   }
 }
