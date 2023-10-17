@@ -10,6 +10,7 @@ import { DashboardModule } from "./views/dashboard/dashboard.module";
 import { CoreModule } from "./core/core.module";
 import { HttpClientModule } from "@angular/common/http";
 import { RegistroModule } from "./views/registro/registro.module";
+import { LoginModule } from "./views/login/login.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +22,7 @@ import { RegistroModule } from "./views/registro/registro.module";
     HttpClientModule,
     CoreModule,
     RegistroModule,
+    LoginModule,
     DashboardModule,
 
     ToastrModule.forRoot({
