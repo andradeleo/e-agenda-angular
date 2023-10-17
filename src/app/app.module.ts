@@ -9,6 +9,7 @@ import { ToastrModule } from "ngx-toastr";
 import { DashboardModule } from "./views/dashboard/dashboard.module";
 import { CoreModule } from "./core/core.module";
 import { HttpClientModule } from "@angular/common/http";
+import { RegistroModule } from "./views/registro/registro.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { HttpClientModule } from "@angular/common/http";
     NgbModule,
     HttpClientModule,
     CoreModule,
+    RegistroModule,
     DashboardModule,
 
     ToastrModule.forRoot({
