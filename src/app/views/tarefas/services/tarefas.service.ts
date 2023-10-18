@@ -9,6 +9,7 @@ import { environment } from "src/environments/environment";
 import { FormsTarefaViewModel } from "../models/form-tarefas.view-model";
 import { ListarTarefaViewModel } from "../models/listar-tarefa.view-model";
 import { VisualizarTarefaViewModel } from "../models/visualizar-tarefa.view-model";
+import { LocalStorageService } from "src/app/core/auth/services/local-storage.service";
 
 @Injectable({
   providedIn: "root",
@@ -16,7 +17,10 @@ import { VisualizarTarefaViewModel } from "../models/visualizar-tarefa.view-mode
 export class TarefasService {
   private endpoint: string = `${environment.URL}/api/tarefas`;
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly localStorageService: LocalStorageService
+  ) {}
 
   public inserir(
     tarefa: FormsTarefaViewModel
@@ -82,7 +86,7 @@ export class TarefasService {
   }
 
   private obterHeadersAutorizacao() {
-    const token = environment.apiKey;
+    const token = this.localStorageService.obterDadosLocaisSalvos()?.chave;
 
     return {
       headers: new HttpHeaders({

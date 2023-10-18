@@ -8,6 +8,7 @@ import {
 } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { ListarDespesaViewModel } from "../models/listar-despesa.view-model";
+import { LocalStorageService } from "src/app/core/auth/services/local-storage.service";
 
 @Injectable({
   providedIn: "root",
@@ -15,7 +16,10 @@ import { ListarDespesaViewModel } from "../models/listar-despesa.view-model";
 export class DespesasService {
   private endpoint: string = `${environment.URL}/api/despesas`;
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly localStorageService: LocalStorageService
+  ) {}
 
   public inserir(
     despesas: FormDespesaViewModel
@@ -88,7 +92,7 @@ export class DespesasService {
   }
 
   private obterHeadersAutorizacao() {
-    const token = environment.apiKey;
+    const token = this.localStorageService.obterDadosLocaisSalvos()?.chave;
 
     return {
       headers: new HttpHeaders({

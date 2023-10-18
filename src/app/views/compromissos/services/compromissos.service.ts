@@ -8,12 +8,16 @@ import { environment } from "src/environments/environment";
 import { Observable, catchError, map, throwError } from "rxjs";
 import { FormsCompromissoViewModel } from "../models/forms-compromisso.view-model copy";
 import { ListarCompromissoViewModel } from "../models/listar-compromisso.view-model";
+import { LocalStorageService } from "src/app/core/auth/services/local-storage.service";
 
 @Injectable()
 export class CompromissosService {
   private endpoint: string = `${environment.URL}/api/compromissos`;
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly localStorageService: LocalStorageService
+  ) {}
 
   public inserir(
     compromisso: FormsCompromissoViewModel
@@ -65,7 +69,7 @@ export class CompromissosService {
   }
 
   private obterHeadersAutorizacao() {
-    const token = environment.apiKey;
+    const token = this.localStorageService.obterDadosLocaisSalvos()?.chave;
 
     return {
       headers: new HttpHeaders({

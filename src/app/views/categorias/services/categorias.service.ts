@@ -8,13 +8,17 @@ import {
 } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { ListarCategoriaViewModel } from "../models/listar-categoria.view-model";
+import { LocalStorageService } from "src/app/core/auth/services/local-storage.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class CategoriasService {
   private endpoint: string = `${environment.URL}/api/categorias`;
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly localStorageService: LocalStorageService
+  ) {}
 
   public inserir(
     categoria: FormsCategoriaViewModel
@@ -66,7 +70,7 @@ export class CategoriasService {
   }
 
   private obterHeadersAutorizacao() {
-    const token = environment.apiKey;
+    const token = this.localStorageService.obterDadosLocaisSalvos()?.chave;
 
     return {
       headers: new HttpHeaders({
