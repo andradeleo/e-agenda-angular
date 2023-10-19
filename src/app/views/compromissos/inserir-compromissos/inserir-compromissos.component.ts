@@ -65,7 +65,7 @@ export class InserirCompromissosComponent implements OnInit {
       `O compromisso "${res.assunto} foi cadastrado com sucesso!"`,
       "Sucesso"
     );
-    this.router.navigate(["/compromisso/listar"]);
+    this.router.navigate(["/compromissos/listar"]);
   }
 
   processarFalha(err: HttpErrorResponse) {
